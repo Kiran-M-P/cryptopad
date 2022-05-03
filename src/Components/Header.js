@@ -46,7 +46,7 @@ const Header = () => {
               CRYPTOPAD
             </Typography>
             <Select
-              variant="outlined"
+              variant="standard"
               style={{
                 width: 100,
                 height: 40,

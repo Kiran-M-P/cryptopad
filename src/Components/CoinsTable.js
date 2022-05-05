@@ -77,6 +77,7 @@ const CoinsTable = () => {
   // navigate
   const navigate = useNavigate();
 
+  // classes
   const classes = useStyles();
 
   return (

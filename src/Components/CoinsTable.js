@@ -33,6 +33,8 @@ const CoinsTable = () => {
       type: "dark",
     },
   });
+
+  console.log(coins);
   return (
     <ThemeProvider theme={darkTheme}>
       <Container style={{ textAlign: "center" }}>

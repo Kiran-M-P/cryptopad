@@ -41,12 +41,11 @@ const Banner = () => {
             CRYPTOPAD
           </Typography>
           <Typography
-            variant="sub"
+            variant="subtitle2"
             style={{
               color: "darkgrey",
               fontFamily: "JetBrains Mono",
               fontWeight: 300,
-              fontSize: "0.8rem",
             }}
           >
             Get all the info regarding your favorite Crypto Currency

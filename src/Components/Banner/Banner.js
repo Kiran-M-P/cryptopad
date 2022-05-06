@@ -15,13 +15,6 @@ const useStyles = makeStyles(() => ({
     paddingTop: 25,
     justifyContent: "space-around",
   },
-  tagline: {
-    display: "flex",
-    height: "40%",
-    flexDirection: "column",
-    justifyContent: "center",
-    textAlign: "center",
-  },
 }));
 
 const Banner = () => {
@@ -29,28 +22,6 @@ const Banner = () => {
   return (
     <div className={classes.banner}>
       <Container className={classes.bannerContent}>
-        <div className={classes.tagline}>
-          <Typography
-            variant="h2"
-            style={{
-              fontWeight: 500,
-              marginBottom: 15,
-              fontFamily: "JetBrains Mono",
-            }}
-          >
-            CRYPTOPAD
-          </Typography>
-          <Typography
-            variant="subtitle2"
-            style={{
-              color: "darkgrey",
-              fontFamily: "JetBrains Mono",
-              fontWeight: 300,
-            }}
-          >
-            Get all the info regarding your favorite Crypto Currency
-          </Typography>
-        </div>
         <Carousel />
       </Container>
     </div>

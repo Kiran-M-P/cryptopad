@@ -3,27 +3,40 @@ import "./App.css";
 import Header from "./Components/Header";
 import CoinPage from "./Pages/CoinPage";
 import Homepage from "./Pages/Homepage";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, createTheme, ThemeProvider } from "@material-ui/core";
 
 const useStyles = makeStyles(() => ({
   App: {
-    backgroundColor: "#15191C",
+    backgroundColor: "#121418",
     minHeight: "100vh",
-    color: "#ccd6f6",
+    color: "white",
   },
 }));
 
 function App() {
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: "#64ffda",
+      },
+      type: "dark",
+    },
+    typography: {
+      fontFamily: ["Poppins", "Roboto"].join(","),
+    },
+  });
   const classes = useStyles();
   return (
     <BrowserRouter>
-      <div className={classes.App}>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Homepage />} />
-          <Route path="/coins/:id" element={<CoinPage />} />
-        </Routes>
-      </div>
+      <ThemeProvider theme={theme}>
+        <div className={classes.App}>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Homepage />} />
+            <Route path="/coins/:id" element={<CoinPage />} />
+          </Routes>
+        </div>
+      </ThemeProvider>
     </BrowserRouter>
   );
 }

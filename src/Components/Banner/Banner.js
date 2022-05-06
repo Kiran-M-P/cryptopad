@@ -3,11 +3,6 @@ import React from "react";
 import Carousel from "./Carousel";
 
 const useStyles = makeStyles(() => ({
-  banner: {
-    background: "url(./blockchain.jpg)",
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "cover",
-  },
   bannerContent: {
     height: 400,
     display: "flex",
@@ -20,11 +15,10 @@ const useStyles = makeStyles(() => ({
 const Banner = () => {
   const classes = useStyles();
   return (
-    <div className={classes.banner}>
-      <Container className={classes.bannerContent}>
-        <Carousel />
-      </Container>
-    </div>
+    <Container className={classes.bannerContent}>
+      <Typography variant="h4">Trending</Typography>
+      <Carousel />
+    </Container>
   );
 };
 

@@ -12,6 +12,12 @@ import { useNavigate } from "react-router-dom";
 import { CryptoState } from "../CryptoContext";
 
 const useStyles = makeStyles((theme) => ({
+  logo: {
+    width: 30,
+    [theme.breakpoints.down("md")]: {
+      width: 27,
+    },
+  },
   title: {
     color: "#66FFCC",
     fontFamily: "Poppins",
@@ -27,7 +33,8 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     fontFamily: "Poppins",
   },
-  appBar: {
+  toolBar: {
+    padding: 0,
     [theme.breakpoints.down("md")]: {
       height: 70,
     },
@@ -42,7 +49,7 @@ const Header = () => {
   return (
     <AppBar color="transparent" position="static">
       <Container>
-        <Toolbar className={classes.appBar}>
+        <Toolbar className={classes.toolBar}>
           <div
             style={{
               display: "flex",
@@ -51,7 +58,11 @@ const Header = () => {
             }}
             onClick={() => navigate("/")}
           >
-            <img src="./cryptopadLogo.png" height="30" alt="logo" />
+            <img
+              src="./cryptopadLogo.png"
+              className={classes.logo}
+              alt="logo"
+            />
             <Typography className={classes.title}>ryptopad</Typography>
           </div>
           <Select

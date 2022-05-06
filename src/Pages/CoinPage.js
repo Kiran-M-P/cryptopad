@@ -76,6 +76,7 @@ const CoinPage = () => {
       setCoin(data);
     };
     fetchCoin();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currency]);
 
   console.log(coin);

@@ -22,6 +22,13 @@ import { numberWithCommas } from "./Banner/Carousel";
 
 // styles
 const useStyles = makeStyles(() => ({
+  search: {
+    [`& fieldset`]: {
+      borderRadius: 25,
+      borderWidth: 2,
+      borderColor: "#8892b0",
+    },
+  },
   row: {
     cursor: "pointer",
     "&:hover": {
@@ -87,10 +94,15 @@ const CoinsTable = () => {
           onChange={(e) => setSearch(e.target.value)}
           label="Search"
           variant="outlined"
+          className={classes.search}
           style={{
             marginTop: 20,
             marginBottom: 20,
             width: "100%",
+          }}
+          InputProps={{ style: { fontFamily: "Poppins", color: "#ccd6f6" } }}
+          InputLabelProps={{
+            style: { fontFamily: "Poppins", color: "#ccd6f6" },
           }}
         ></TextField>
         <TableContainer>

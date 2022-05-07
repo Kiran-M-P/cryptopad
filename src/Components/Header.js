@@ -12,6 +12,12 @@ import { useNavigate } from "react-router-dom";
 import { CryptoState } from "../CryptoContext";
 
 const useStyles = makeStyles((theme) => ({
+  select: {
+    [`& fieldset`]: {
+      borderRadius: 15,
+      borderWidth: 2,
+    },
+  },
   logo: {
     width: 30,
     [theme.breakpoints.down("md")]: {
@@ -67,6 +73,7 @@ const Header = () => {
           </div>
           <Select
             variant="outlined"
+            className={classes.select}
             style={{
               width: 100,
               height: 35,

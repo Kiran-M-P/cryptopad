@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     background: "#1B1F24",
-    color: "white",
+    color: "#ccd6f6",
     fontFamily: "Poppins",
   },
   toolBar: {

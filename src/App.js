@@ -19,6 +19,10 @@ function App() {
       primary: {
         main: "#66FFCC",
       },
+      text: {
+        primary: "#ccd6f6",
+        secondary: "#8892b0",
+      },
       type: "dark",
     },
     typography: {

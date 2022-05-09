@@ -1,8 +1,11 @@
 import {
   makeStyles,
   Typography,
-  useTheme,
   LinearProgress,
+  TableContainer,
+  Table,
+  TableRow,
+  TableCell,
 } from "@material-ui/core";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
@@ -10,12 +13,15 @@ import { useParams } from "react-router-dom";
 import CoinInfo from "../Components/CoinInfo";
 import { SingleCoin } from "../config/api";
 import { CryptoState } from "../CryptoContext";
-import parse from "html-react-parser";
 import numberWithCommas from "../config/numberWithCommas";
 
 const useStyles = makeStyles((theme) => ({
   container: {
     display: "flex",
+    paddingTop: 60,
+    fontFamily: "Poppins",
+    padding: 10,
+    color: "#ccd6f6",
     [theme.breakpoints.down("md")]: {
       flexDirection: "column",
       alignItems: "center",
@@ -23,28 +29,15 @@ const useStyles = makeStyles((theme) => ({
   },
   sidebar: {
     width: "30%",
+    padding: 10,
     [theme.breakpoints.down("md")]: {
       width: "100%",
     },
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",
     marginTop: 25,
-    borderRight: "2px solid grey",
   },
-  heading: {
-    fontWeight: "bold",
-    marginBottom: 20,
-    fontFamily: "Jetbrains Mono",
-  },
-  description: {
-    width: "100%",
-    fontFamily: "Jetbrains Mono",
-    padding: 25,
-    paddingBottom: 15,
-    paddingTop: 0,
-    textAlign: "justify",
-  },
+
   marketData: {
     alignSelf: "start",
     padding: 25,
@@ -80,91 +73,113 @@ const CoinPage = () => {
   }, [currency]);
 
   console.log(coin);
-
+  let profit = coin?.market_data.price_change_percentage_24h >= 0;
   if (!coin) return <LinearProgress />;
   return (
     <div className={classes.container}>
       <div className={classes.sidebar}>
-        <img
-          src={coin?.image.large}
-          alt={coin?.name}
-          height="200"
+        <div
           style={{
-            marginBottom: 20,
+            display: "flex",
+            alignItems: "center",
+            gap: 15,
+            paddingTop: 30,
+            paddingBottom: 40,
           }}
-        />
-        <Typography variant="h3" className={classes.heading}>
-          {coin?.name}
-        </Typography>
-        <Typography variant="subtitle1" className={classes.description}>
-          {parse(String(coin?.description.en.split(". ")[0]))}.
-        </Typography>
-        <div className={classes.marketData}>
-          <span
+        >
+          <img src={coin?.image.large} alt={coin?.name} height="60" />
+          <div
             style={{
               display: "flex",
+              flexDirection: "column",
             }}
           >
-            <Typography variant="h5" className={classes.heading}>
-              Rank:
+            <Typography variant="h3" style={{ fontSize: 30, fontWeight: 500 }}>
+              {coin?.name}
             </Typography>
-            &nbsp; &nbsp;
-            <Typography
-              variant="h5"
-              style={{
-                fontFamily: "Jetbrains Mono",
-              }}
-            >
-              {coin?.market_cap_rank}
-            </Typography>
-          </span>
-
-          <span
-            style={{
-              display: "flex",
-            }}
-          >
-            <Typography variant="h5" className={classes.heading}>
-              Current Price:
-            </Typography>
-            &nbsp; &nbsp;
-            <Typography
-              variant="h5"
-              style={{
-                fontFamily: "Jetbrains Mono",
-              }}
-            >
-              {symbol}
-              {numberWithCommas(
-                coin?.market_data.current_price[currency.toLowerCase()]
-              )}
-            </Typography>
-          </span>
-          <span
-            style={{
-              display: "flex",
-            }}
-          >
-            <Typography variant="h5" className={classes.heading}>
-              Market Cap:
-            </Typography>
-            &nbsp; &nbsp;
-            <Typography
-              variant="h5"
-              style={{
-                fontFamily: "Jetbrains Mono",
-              }}
-            >
-              {symbol}
-              {numberWithCommas(
-                coin?.market_data.market_cap[currency.toLowerCase()]
-                  .toString()
-                  .slice(0, -6)
-              )}
-              M
-            </Typography>
-          </span>
+            <p>
+              <span
+                style={{
+                  textTransform: "uppercase",
+                  fontSize: 16,
+                  color: "#8892b0",
+                }}
+              >
+                {coin.symbol}
+              </span>
+              &nbsp;
+              <span
+                style={{
+                  color: profit > 0 ? "rgb(14, 203, 129)" : "#FF6666",
+                  fontSize: 16,
+                }}
+              >
+                {profit && "+"}
+                {coin?.market_data.price_change_percentage_24h?.toFixed(2)}%
+              </span>
+            </p>
+          </div>
         </div>
+        <TableContainer
+          style={{ backgroundColor: "#1B1F24", padding: 5, borderRadius: 30 }}
+        >
+          <Table>
+            <TableRow>
+              <TableCell style={{ borderBottom: "none" }}>
+                <p>Current Price</p>
+              </TableCell>
+              <TableCell align="right" style={{ borderBottom: "none" }}>
+                <p>
+                  {symbol}&nbsp;
+                  {numberWithCommas(
+                    coin?.market_data.current_price[currency.toLowerCase()]
+                  )}
+                </p>
+              </TableCell>
+            </TableRow>
+
+            <TableRow>
+              <TableCell style={{ borderBottom: "none" }}>
+                <p>Market Cap</p>
+              </TableCell>
+              <TableCell align="right" style={{ borderBottom: "none" }}>
+                <p>
+                  {symbol}&nbsp;
+                  {numberWithCommas(
+                    coin?.market_data.market_cap[currency.toLowerCase()]
+                      .toString()
+                      .slice(0, -6)
+                  )}
+                  M
+                </p>
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell style={{ borderBottom: "none" }}>
+                <p>Rank</p>
+              </TableCell>
+              <TableCell align="right" style={{ borderBottom: "none" }}>
+                <p>{coin?.market_cap_rank}</p>
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell style={{ borderBottom: "none" }}>
+                <p>Trading Volume</p>
+              </TableCell>
+              <TableCell align="right" style={{ borderBottom: "none" }}>
+                <p>
+                  {symbol}&nbsp;
+                  {numberWithCommas(
+                    coin?.market_data.total_volume[currency.toLowerCase()]
+                      .toString()
+                      .slice(0, -6)
+                  )}
+                  M
+                </p>
+              </TableCell>
+            </TableRow>
+          </Table>
+        </TableContainer>
       </div>
       <CoinInfo coin={coin} />
     </div>

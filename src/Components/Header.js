@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { CryptoState } from "../CryptoContext";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import Slide from "@material-ui/core/Slide";
+import Logo from "../cryptopadLogo.png";
 
 const useStyles = makeStyles((theme) => ({
   select: {
@@ -77,11 +78,7 @@ const Header = () => {
               }}
               onClick={() => navigate("/")}
             >
-              <img
-                src="./cryptopadLogo.png"
-                className={classes.logo}
-                alt="logo"
-              />
+              <img src={Logo} className={classes.logo} alt="logo" />
               <Typography className={classes.title}>ryptopad</Typography>
             </div>
             <Select

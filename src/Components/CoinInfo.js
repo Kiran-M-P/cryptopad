@@ -1,9 +1,4 @@
-import {
-  CircularProgress,
-  createTheme,
-  makeStyles,
-  ThemeProvider,
-} from "@material-ui/core";
+import { CircularProgress, makeStyles } from "@material-ui/core";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
@@ -33,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("md")]: {
       width: "100%",
       marginTop: 0,
-      padding: 20,
+      padding: 10,
     },
   },
 }));
@@ -48,19 +43,13 @@ ChartJS.register(
   Legend
 );
 
+ChartJS.defaults.font.family = "'Poppins', sans-serif";
+ChartJS.defaults.borderColor = "#121418";
+// ChartJS.defaults.scale.ticks.display = false;
 const CoinInfo = ({ coin }) => {
   const [historicalData, setHistoricalData] = useState();
   const [days, setDays] = useState(1);
   const { currency } = CryptoState();
-
-  const darkTheme = createTheme({
-    palette: {
-      primary: {
-        main: "#fff",
-      },
-      type: "dark",
-    },
-  });
 
   const fetchHistoricalData = async () => {
     const { data } = await axios.get(HistoricalChart(coin.id, days, currency));
@@ -75,16 +64,33 @@ const CoinInfo = ({ coin }) => {
   const classes = useStyles();
 
   return (
-    <ThemeProvider theme={darkTheme}>
-      <div className={classes.container}>
-        {!historicalData ? (
-          <CircularProgress
-            style={{ color: "#64ffda" }}
-            size={250}
-            thickness={1}
-          />
-        ) : (
-          <>
+    <div className={classes.container}>
+      {!historicalData ? (
+        <CircularProgress
+          style={{ color: "#66FFCC" }}
+          size={250}
+          thickness={1}
+        />
+      ) : (
+        <>
+          <div
+            style={{
+              display: "flex",
+              marginTop: 20,
+              justifyContent: "space-around",
+              width: "100%",
+            }}
+          >
+            {chartDays.map((day) => (
+              <SelectButton
+                key={day.value}
+                onClick={() => setDays(day.value)}
+                children={day.label}
+                selected={day.value === days}
+              />
+            ))}
+          </div>
+          <div style={{ height: "40vh", width: "100%" }}>
             <Line
               data={{
                 labels: historicalData.map((coin) => {
@@ -99,12 +105,25 @@ const CoinInfo = ({ coin }) => {
                 datasets: [
                   {
                     data: historicalData.map((coin) => coin[1]),
-                    label: `Price ( Past ${days} Days ) in ${currency}`,
-                    borderColor: "#64ffda",
+                    label: `  Price ( Past ${days} Days ) in ${currency}`,
+                    borderColor: "#66FFCC",
                   },
                 ],
               }}
               options={{
+                plugins: {
+                  tooltip: {
+                    enabled: true,
+
+                    mode: "nearest",
+                    intersect: false,
+                  },
+                },
+                responsive: true,
+                maintainAspectRatio: false,
+                layout: {
+                  autoPadding: true,
+                },
                 elements: {
                   point: {
                     radius: 1,
@@ -112,27 +131,10 @@ const CoinInfo = ({ coin }) => {
                 },
               }}
             />
-            <div
-              style={{
-                display: "flex",
-                marginTop: 20,
-                justifyContent: "space-around",
-                width: "100%",
-              }}
-            >
-              {chartDays.map((day) => (
-                <SelectButton
-                  key={day.value}
-                  onClick={() => setDays(day.value)}
-                  children={day.label}
-                  selected={day.value === days}
-                />
-              ))}
-            </div>
-          </>
-        )}
-      </div>
-    </ThemeProvider>
+          </div>
+        </>
+      )}
+    </div>
   );
 };
 

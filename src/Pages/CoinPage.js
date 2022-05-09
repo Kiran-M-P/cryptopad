@@ -83,25 +83,25 @@ const CoinPage = () => {
             display: "flex",
             alignItems: "center",
             gap: 15,
-            paddingTop: 30,
+            paddingTop: 20,
             paddingBottom: 40,
           }}
         >
-          <img src={coin?.image.large} alt={coin?.name} height="60" />
+          <img src={coin?.image.large} alt={coin?.name} height="45" />
           <div
             style={{
               display: "flex",
               flexDirection: "column",
             }}
           >
-            <Typography variant="h3" style={{ fontSize: 30, fontWeight: 500 }}>
+            <Typography variant="h3" style={{ fontSize: 22, fontWeight: 500 }}>
               {coin?.name}
             </Typography>
             <p>
               <span
                 style={{
                   textTransform: "uppercase",
-                  fontSize: 16,
+                  fontSize: 14,
                   color: "#8892b0",
                 }}
               >
@@ -111,7 +111,7 @@ const CoinPage = () => {
               <span
                 style={{
                   color: profit > 0 ? "rgb(14, 203, 129)" : "#FF6666",
-                  fontSize: 16,
+                  fontSize: 14,
                 }}
               >
                 {profit && "+"}

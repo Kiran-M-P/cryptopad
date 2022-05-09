@@ -4,6 +4,7 @@ import React from "react";
 const SelectButton = ({ children, selected, onClick }) => {
   return (
     <Button
+      size="small"
       variant={selected ? "contained" : "outlined"}
       color="primary"
       onClick={onClick}

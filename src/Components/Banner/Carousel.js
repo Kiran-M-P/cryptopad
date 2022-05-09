@@ -5,6 +5,7 @@ import { TrendingCoins } from "../../config/api";
 import { CryptoState } from "../../CryptoContext";
 import AliceCarousel from "react-alice-carousel";
 import { Link } from "react-router-dom";
+import numberWithCommas from "../../config/numberWithCommas";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -12,7 +13,10 @@ const useStyles = makeStyles((theme) => ({
     width: 280,
 
     padding: "auto",
-    borderRadius: 20,
+    borderRadius: 30,
+    "&:hover": {
+      backgroundColor: "#404347",
+    },
     [theme.breakpoints.down("sm")]: {
       width: "95%",
     },
@@ -54,10 +58,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-
-export function numberWithCommas(x) {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
 
 const Carousel = () => {
   const [trending, setTrending] = useState([]);
@@ -101,7 +101,7 @@ const Carousel = () => {
                   {coin?.price_change_percentage_24h?.toFixed(2)}%
                 </span>
               </span>
-              <span style={{ fontSize: 18, fontWeight: 400 }}>
+              <span style={{ fontSize: 16, fontWeight: 400 }}>
                 {symbol} {numberWithCommas(coin?.current_price.toFixed(2))}
               </span>
             </div>

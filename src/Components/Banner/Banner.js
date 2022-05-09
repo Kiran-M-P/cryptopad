@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme) => ({
   bannerContent: {
     display: "flex",
     flexDirection: "column",
-    paddingTop: 50,
+    paddingTop: 120,
     paddingBottom: 50,
     justifyContent: "space-around",
     [theme.breakpoints.down("sm")]: {

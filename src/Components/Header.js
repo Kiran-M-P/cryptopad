@@ -10,6 +10,8 @@ import {
 } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
 import { CryptoState } from "../CryptoContext";
+import useScrollTrigger from "@material-ui/core/useScrollTrigger";
+import Slide from "@material-ui/core/Slide";
 
 const useStyles = makeStyles((theme) => ({
   select: {
@@ -47,52 +49,64 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const HideOnScroll = (props) => {
+  const { children } = props;
+  const trigger = useScrollTrigger();
+  return (
+    <Slide appear={false} direction="down" in={!trigger}>
+      {children}
+    </Slide>
+  );
+};
+
 const Header = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const { currency, setCurrency } = CryptoState();
 
   return (
-    <AppBar color="transparent" position="static">
-      <Container>
-        <Toolbar className={classes.toolBar}>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              flex: 1,
-            }}
-            onClick={() => navigate("/")}
-          >
-            <img
-              src="./cryptopadLogo.png"
-              className={classes.logo}
-              alt="logo"
-            />
-            <Typography className={classes.title}>ryptopad</Typography>
-          </div>
-          <Select
-            variant="outlined"
-            className={classes.select}
-            style={{
-              width: 100,
-              height: 35,
-              fontFamily: "Poppins",
-            }}
-            MenuProps={{
-              classes: {
-                paper: classes.paper,
-              },
-            }}
-            value={currency}
-            onChange={(event) => setCurrency(event.target.value)}
-          >
-            <MenuItem value={"USD"}>USD</MenuItem>
-            <MenuItem value={"INR"}>INR</MenuItem>
-          </Select>
-        </Toolbar>
-      </Container>
-    </AppBar>
+    <HideOnScroll>
+      <AppBar style={{ backgroundColor: "#121418" }}>
+        <Container>
+          <Toolbar className={classes.toolBar}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                flex: 1,
+              }}
+              onClick={() => navigate("/")}
+            >
+              <img
+                src="./cryptopadLogo.png"
+                className={classes.logo}
+                alt="logo"
+              />
+              <Typography className={classes.title}>ryptopad</Typography>
+            </div>
+            <Select
+              variant="outlined"
+              className={classes.select}
+              style={{
+                width: 100,
+                height: 35,
+                fontFamily: "Poppins",
+              }}
+              MenuProps={{
+                classes: {
+                  paper: classes.paper,
+                },
+              }}
+              value={currency}
+              onChange={(event) => setCurrency(event.target.value)}
+            >
+              <MenuItem value={"USD"}>USD</MenuItem>
+              <MenuItem value={"INR"}>INR</MenuItem>
+            </Select>
+          </Toolbar>
+        </Container>
+      </AppBar>
+    </HideOnScroll>
   );
 };
 

@@ -11,7 +11,8 @@ import CoinInfo from "../Components/CoinInfo";
 import { SingleCoin } from "../config/api";
 import { CryptoState } from "../CryptoContext";
 import parse from "html-react-parser";
-import { numberWithCommas } from "../Components/Banner/Carousel";
+import numberWithCommas from "../config/numberWithCommas";
+
 const useStyles = makeStyles((theme) => ({
   container: {
     display: "flex",
@@ -68,7 +69,6 @@ const CoinPage = () => {
   const [coin, setCoin] = useState();
   const { currency, symbol } = CryptoState();
 
-  const theme = useTheme();
   const classes = useStyles();
   useEffect(() => {
     const fetchCoin = async () => {

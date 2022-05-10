@@ -16,6 +16,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CoinList } from "../config/api";
 import numberWithCommas from "../config/numberWithCommas";
+import WindowDimension from "../config/windowDimensions";
 import { CryptoState } from "../CryptoContext";
 
 // styles
@@ -60,6 +61,7 @@ const CoinsTable = () => {
   const { currency, symbol } = CryptoState();
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
+  const { x } = WindowDimension();
 
   // coins data fetch
   useEffect(() => {
@@ -206,7 +208,7 @@ const CoinsTable = () => {
         )}
       </TableContainer>
       <Pagination
-        size={window.innerWidth < 500 ? `small` : "large"}
+        size={x < 500 ? `small` : "large"}
         style={{
           padding: 30,
           paddingBottom: 40,

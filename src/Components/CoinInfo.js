@@ -16,6 +16,7 @@ import { HistoricalChart } from "../config/api";
 import { CryptoState } from "../CryptoContext";
 import { chartDays } from "../config/data";
 import SelectButton from "./SelectButton";
+import NumberFormatter from "../config/NumberFormatter";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -23,12 +24,17 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    marginTop: 25,
-    padding: 40,
+
     [theme.breakpoints.down("md")]: {
       width: "100%",
-      marginTop: 0,
       padding: 10,
+    },
+  },
+  graph: {
+    height: "60vh",
+    width: "100%",
+    [theme.breakpoints.down("sm")]: {
+      height: "40vh",
     },
   },
 }));
@@ -67,8 +73,8 @@ const CoinInfo = ({ coin }) => {
     <div className={classes.container}>
       {!historicalData ? (
         <CircularProgress
-          style={{ color: "#66FFCC" }}
-          size={250}
+          style={{ color: "#66FFCC", marginTop: 60 }}
+          size={200}
           thickness={1}
         />
       ) : (
@@ -76,9 +82,9 @@ const CoinInfo = ({ coin }) => {
           <div
             style={{
               display: "flex",
-              marginTop: 20,
               justifyContent: "space-around",
               width: "100%",
+              paddingTop: 20,
             }}
           >
             {chartDays.map((day) => (
@@ -90,16 +96,18 @@ const CoinInfo = ({ coin }) => {
               />
             ))}
           </div>
-          <div style={{ height: "40vh", width: "100%" }}>
+          <div className={classes.graph}>
             <Line
               data={{
                 labels: historicalData.map((coin) => {
                   let date = new Date(coin[0]);
-                  let time =
-                    date.getHours() > 12
-                      ? `${date.getHours() - 12}:${date.getMinutes()} PM`
-                      : `${date.getHours()}:${date.getMinutes()} AM`;
-                  return days === 1 ? time : date.toLocaleDateString();
+                  let time = `${date.getHours()}:${date.getMinutes()}`;
+                  return days === 1
+                    ? time
+                    : date.toLocaleDateString(undefined, {
+                        month: "short",
+                        day: "numeric",
+                      });
                 }),
 
                 datasets: [
@@ -111,10 +119,27 @@ const CoinInfo = ({ coin }) => {
                 ],
               }}
               options={{
+                scales: {
+                  y: {
+                    ticks: {
+                      callback: function (value) {
+                        const valueLegend = this.getLabelForValue(value);
+                        return NumberFormatter(valueLegend.replaceAll(",", ""));
+                      },
+                    },
+                  },
+                },
                 plugins: {
+                  legend: {
+                    display: true,
+                    labels: {
+                      color: "#ccd6f6",
+                    },
+                  },
                   tooltip: {
                     enabled: true,
-
+                    titleColor: "#ccd6f6",
+                    bodyColor: "#ccd6f6",
                     mode: "nearest",
                     intersect: false,
                   },

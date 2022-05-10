@@ -11,7 +11,6 @@ const useStyles = makeStyles((theme) => ({
   card: {
     backgroundColor: "#1B1F24",
     width: 280,
-
     padding: "auto",
     borderRadius: 30,
     "&:hover": {
@@ -61,10 +60,8 @@ const useStyles = makeStyles((theme) => ({
 
 const Carousel = () => {
   const [trending, setTrending] = useState([]);
-
-  const classes = useStyles();
-
   const { currency, symbol } = CryptoState();
+  const classes = useStyles();
 
   useEffect(() => {
     const fetchTrendingCoins = async () => {

@@ -59,7 +59,8 @@ ChartJS.register(
 
 ChartJS.defaults.font.family = "'Poppins', sans-serif";
 ChartJS.defaults.borderColor = "#121418";
-// ChartJS.defaults.scale.ticks.display = false;
+ChartJS.defaults.animation = false;
+
 const CoinInfo = ({ coin }) => {
   const [historicalData, setHistoricalData] = useState();
   const [days, setDays] = useState(1);
@@ -151,6 +152,9 @@ const CoinInfo = ({ coin }) => {
                   autoPadding: true,
                 },
                 elements: {
+                  line: {
+                    tension: 0,
+                  },
                   point: {
                     radius: 1,
                   },

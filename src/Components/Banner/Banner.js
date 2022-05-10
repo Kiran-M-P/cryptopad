@@ -13,6 +13,12 @@ const useStyles = makeStyles((theme) => ({
       paddingBottom: 25,
     },
   },
+  bannerTitle: {
+    color: "#ccd6f6",
+    fontSize: 28,
+    fontWeight: 500,
+    paddingLeft: 10,
+  },
 }));
 
 const Banner = () => {
@@ -20,15 +26,7 @@ const Banner = () => {
 
   return (
     <Container className={classes.bannerContent}>
-      <Typography
-        variant="h4"
-        style={{
-          color: "#ccd6f6",
-          fontSize: 28,
-          fontWeight: 500,
-          paddingLeft: 10,
-        }}
-      >
+      <Typography variant="h4" className={classes.bannerTitle}>
         Trending
       </Typography>
       <Carousel />

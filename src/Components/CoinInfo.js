@@ -27,7 +27,15 @@ const useStyles = makeStyles((theme) => ({
 
     [theme.breakpoints.down("md")]: {
       width: "100%",
-      padding: 10,
+    },
+  },
+  selectButton: {
+    display: "flex",
+    gap: 10,
+    width: "100%",
+    paddingTop: 20,
+    [theme.breakpoints.down("xs")]: {
+      justifyContent: "center",
     },
   },
   graph: {
@@ -79,14 +87,7 @@ const CoinInfo = ({ coin }) => {
         />
       ) : (
         <>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-around",
-              width: "100%",
-              paddingTop: 20,
-            }}
-          >
+          <div className={classes.selectButton}>
             {chartDays.map((day) => (
               <SelectButton
                 key={day.value}

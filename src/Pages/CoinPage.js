@@ -23,32 +23,40 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     fontFamily: "Poppins",
     minHeight: "100vh",
+    padding: "6%",
+
     color: "#ccd6f6",
+    [theme.breakpoints.down("sm")]: {
+      padding: 10,
+    },
   },
   childContainer: {
     display: "flex",
     gap: 50,
     width: "100%",
-    padding: "7%",
 
     [theme.breakpoints.down("md")]: {
       flexDirection: "column",
       alignItems: "center",
     },
+
     [theme.breakpoints.down("sm")]: {
-      paddingTop: 60,
+      padding: 25,
+    },
+    [theme.breakpoints.down("xs")]: {
       padding: 10,
-      alignItems: "start",
+      paddingTop: 60,
+      gap: 20,
     },
   },
   sidebar: {
     width: "30%",
+    display: "flex",
+    flexDirection: "column",
 
     [theme.breakpoints.down("md")]: {
       width: "100%",
     },
-    display: "flex",
-    flexDirection: "column",
   },
 
   marketData: {

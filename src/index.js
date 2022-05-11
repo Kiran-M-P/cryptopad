@@ -4,8 +4,10 @@ import "./index.css";
 import App from "./App";
 import CryptoContext from "./CryptoContext";
 import "react-alice-carousel/lib/alice-carousel.css";
+import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
 root.render(
   <React.StrictMode>
     <CryptoContext>
@@ -13,3 +15,5 @@ root.render(
     </CryptoContext>
   </React.StrictMode>
 );
+
+serviceWorkerRegistration.register();

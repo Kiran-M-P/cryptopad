@@ -41,6 +41,9 @@ const useStyles = makeStyles((theme) => ({
   graph: {
     height: "60vh",
     width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
     [theme.breakpoints.down("sm")]: {
       height: "40vh",
     },
@@ -67,6 +70,7 @@ const CoinInfo = ({ coin }) => {
   const { currency } = CryptoState();
 
   const fetchHistoricalData = async () => {
+    setHistoricalData();
     const { data } = await axios.get(HistoricalChart(coin.id, days, currency));
     setHistoricalData(data.prices);
   };
@@ -80,24 +84,26 @@ const CoinInfo = ({ coin }) => {
 
   return (
     <div className={classes.container}>
+      <div className={classes.selectButton}>
+        {chartDays.map((day) => (
+          <SelectButton
+            key={day.value}
+            onClick={() => setDays(day.value)}
+            children={day.label}
+            selected={day.value === days}
+          />
+        ))}
+      </div>
       {!historicalData ? (
-        <CircularProgress
-          style={{ color: "#66FFCC", marginTop: 60 }}
-          size={200}
-          thickness={1}
-        />
+        <div className={classes.graph}>
+          <CircularProgress
+            style={{ color: "#66FFCC" }}
+            size={200}
+            thickness={1}
+          />
+        </div>
       ) : (
         <>
-          <div className={classes.selectButton}>
-            {chartDays.map((day) => (
-              <SelectButton
-                key={day.value}
-                onClick={() => setDays(day.value)}
-                children={day.label}
-                selected={day.value === days}
-              />
-            ))}
-          </div>
           <div className={classes.graph}>
             <Line
               data={{

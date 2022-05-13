@@ -42,8 +42,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
-![alt text](https://github.com/Kiran-M-P/cryptopad/blob/6cf43bbcb69388fa046292f1ebffe80ea2969bfc/readme-assets/screenshot.jpg)
+<img src="https://github.com/Kiran-M-P/cryptopad/blob/6cf43bbcb69388fa046292f1ebffe80ea2969bfc/readme-assets/screenshot.jpg" alt="Screenshot" width="300" height="300">
 
 
 * Modern and mobile-first UI design.

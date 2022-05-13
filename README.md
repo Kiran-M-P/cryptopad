@@ -2,7 +2,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/Kiran-M-P/cryptopad" target="_blank" rel="noopener noreferrer">
+  <a href="https://github.com/Kiran-M-P/cryptopad">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -12,7 +12,7 @@
    A Progressive Web App to track Cryptocurrency price.
     <br />
     <br />
-    <a href="https://cryptopad.vercel.app/">View Demo</a>
+    <a href="https://cryptopad.vercel.app/"  target="_blank" rel="noopener noreferrer">View Demo</a>
     ·
     <a href="https://github.com/Kiran-M-P/cryptopad/issues">Report Bug</a>
     ·

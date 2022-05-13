@@ -2,7 +2,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/Kiran-M-P/cryptopad">
+  <a href="https://github.com/Kiran-M-P/cryptopad" target="_blank" rel="noopener noreferrer">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 

@@ -11,8 +11,6 @@
   <p align="center">
    A Progressive Web App to track Cryptocurrency price.
     <br />
-    <a href="https://github.com/Kiran-M-P/cryptopad"><strong>Explore the docs »</strong></a>
-    <br />
     <br />
     <a href="https://cryptopad.vercel.app/">View Demo</a>
     ·

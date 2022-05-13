@@ -31,7 +31,6 @@
       <li><a href="#built-with">Built With</a></li>
     <li>
       <a href="#getting-started">Getting Started</a></li>
-    <li><a href="#usage">Usage</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
 
@@ -86,24 +85,10 @@
 
 Now you will have the semi functional site running on port 3000 on your localhost.
 
-
-
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-
-
-
-
 <!-- LICENSE -->
 ## License
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-
 
 
 <!-- CONTACT -->

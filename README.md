@@ -3,7 +3,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Kiran-M-P/cryptopad">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="https://github.com/Kiran-M-P/cryptopad/blob/6cf43bbcb69388fa046292f1ebffe80ea2969bfc/readme-assets/logo.png" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">Cryptopad</h3>
@@ -43,7 +43,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+![alt text](https://github.com/Kiran-M-P/cryptopad/blob/6cf43bbcb69388fa046292f1ebffe80ea2969bfc/readme-assets/screenshot.jpg)
 
 
 * Modern and mobile-first UI design.

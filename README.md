@@ -47,7 +47,7 @@
 * Modern and mobile-first UI design.
 * Historic price changes in Graphical representation.
 * Supports for INR and USD prices.
-* Native app like experience in mobile phones.
+* Native app like experience.
 
 
 
